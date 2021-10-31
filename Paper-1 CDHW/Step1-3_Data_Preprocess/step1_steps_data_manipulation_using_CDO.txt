@@ -1,0 +1,19 @@
+############ Step 1: DATA PROCESSING USING CDO ##############################################
+1. Data download (CMIP6, GPCC,CPC)
+2. Concatenate data files using cdo
+command: cdo cat file1 file2 dir/file3
+(a) Create four folders = Historical; SSP1-26, SSP2-45, SSP5-85 (scenarios)
+(b) Enter in each folder and create the model sub-folders with "model names"
+(c) Copy paste the raw data files in the respective folders where they belong.
+(d) Enter in each model sub-folders and make a new folder named "cat"
+Then inside the model subfolders apply this command:
+cdo cat <var1>_xxxx* cat/<old_name>_date1_date2.nc
+
+3. Remapping to common grid resolution
+Go into the cat folder and type
+cdo remapbil,mygrid_dxd input_file_name output_file_name
+Note: save a copy of the mygrid file in each of the cat folders before applying the above mentioned command. Also here the input_file refers to the file that you have created in the cat folder.
+
+############# Step 2 DATA ANALYSIS in MATLAB ########################################
+(a) Calculate all important extreme precipitation indices for all scenarios and all models separately for the global grid points and save these files in separate folders
+Folder structure: Scenario - Model_name - Precip Index name - save the matrix.txt (output file)
